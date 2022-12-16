@@ -22,13 +22,13 @@ public class UserController {
     }
 
     @GetMapping()
-    public String printUsers(Model model) {
+    public String printAllUsers(Model model) {
         model.addAttribute("user", userService.getUsers());
         return "/users";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String showUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "/user";
     }
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("user") User user,
+    public String updateUser(@ModelAttribute("user") User user,
                          @PathVariable("id") long id) {
         userService.updateUser(user, id);
         return "redirect:/users";
